@@ -17,6 +17,18 @@ class Vector:
         else:
             raise TypeError("Unsupported operand type for -")
 
+    def __mul__(self, scalar):
+        if isinstance(scalar, (int, float)):
+            return Vector(self.x * scalar, self.y * scalar)
+        else:
+            raise TypeError("Unsupported operand type for *")
+
+    def __truediv__(self, scalar):
+        if isinstance(scalar, (int, float)) and scalar != 0:
+            return Vector(self.x / scalar, self.y / scalar)
+        else:
+            raise ValueError("Division by zero or unsupported operand type")
+
     def __str__(self):
         return f"({self.x}, {self.y})"
 
@@ -30,6 +42,12 @@ def main():
 
     result_sub = v1 - v2
     print("Subtraction:", result_sub)
+
+    result_mul = v1 * 2
+    print("Scalar Multiplication:", result_mul)
+
+    result_div = v1 / 2
+    print("Scalar Division:", result_div)
 
 
 if __name__ == '__main__':
